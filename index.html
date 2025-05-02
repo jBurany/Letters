@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/cards.css">    
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Letters</title>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/cards.css"/>
 </head>
 <body>
-  <!-- 1. Modal de selección de idioma -->
-    <div id="language-modal">
-        <div class="language-box">
-          <label for="language">Selecciona idioma</label>
-          <select id="language">
-            <option value="es" selected>Español</option>
-            <option value="en">English</option>
-          </select>
-          <button id="language-confirm">Continuar</button>
-        </div>
-      </div>
-    
+  <!-- 1) Enlace para saltar directamente al contenido -->
+  <a href="#main-content" class="skip-link">Ir al contenido</a>
 
-  <!-- 2. Contenido oculto hasta elegir idioma -->
-  <div id="content" class="hidden">
-    <div id="background">
-      <canvas id="particles"></canvas>
-      <canvas id="waves"></canvas>
+  <!-- 2) Modal de selección de idioma con ARIA -->
+  <div
+    id="language-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lang-label"
+  >
+    <div class="language-box">
+      <label id="lang-label" for="language">Selecciona idioma</label>
+      <select id="language">
+        <option value="es" selected>Español</option>
+        <option value="en">English</option>
+      </select>
+      <button id="language-confirm">Continuar</button>
     </div>
-    <header id="header"></header>
-          
-    <main id="products" class="container"></main>
-    <footer id="footer"></footer>
   </div>
 
+  <!-- 3) Contenido principal oculto hasta escoger idioma -->
+  <div id="content" class="hidden">
+    <main id="main-content" class="container">
+      <!-- Fondo animado -->
+      <div id="background">
+        <canvas id="particles"></canvas>
+        <canvas id="waves"></canvas>
+      </div>
+      <!-- Header dinámico -->
+      <header id="header"></header>
+      <!-- Grid de productos -->
+      <section id="products"></section>
+      <!-- Footer dinámico -->
+      <footer id="footer"></footer>
+    </main>
+  </div>
+
+  <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/background.js"></script>
 </body>

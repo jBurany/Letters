@@ -1,1 +1,47 @@
-<link rel="stylesheet" href="css/global.css">
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO & Social Meta Tags -->
+  <title id="meta-title">Letters</title>
+  <meta name="description" content="" id="meta-description" />
+  <link rel="canonical" href="" id="meta-canonical" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="" id="og-title" />
+  <meta property="og:description" content="" id="og-description" />
+  <meta property="og:url" content="" id="og-url" />
+  <meta property="og:image" content="ruta/a/imagen-por-defecto.jpg" id="og-image" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="" id="twitter-title" />
+  <meta name="twitter:description" content="" id="twitter-desc" />
+
+  <!-- Estilos globales y de tarjetas -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/cards.css" />
+</head>
+<body>
+  <!-- Contenedor que inyecta header/footer y detalle -->
+  <div id="content">
+    <!-- fondo animado -->
+    <div id="background">
+      <canvas id="particles"></canvas>
+      <canvas id="waves"></canvas>
+    </div>
+
+    <!-- Header dinámico -->
+    <header id="header"></header>
+
+    <!-- Aquí inyectamos el detalle del producto -->
+    <main id="product-detail" class="container"></main>
+
+    <!-- Footer dinámico -->
+    <footer id="footer"></footer>
+  </div>
+
+  <!-- Scripts: carga header/footer, traducciones, detalle y meta-tags -->
+  <script src="js/main.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

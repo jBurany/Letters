@@ -1,172 +1,282 @@
-/* css/global.css */
+/* ====================================
+   css/global.css
+   ==================================== */
 
-/* 1) Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* 2) Tipografías y fondo general */
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #7f7f7f; /* gris medio */
-    position: relative;
-  }
-  
-  /* 3) Canvas de fondo animado detrás de todo */
-  #background {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    z-index: -2;
-  }
-  #background canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  
-  /* 4) Asegurar que header, main y footer queden encima */
-  header,
-  main,
-  footer {
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* 5) Modal de selección de idioma */
-  .hidden {
-    display: none !important;
-  }
-  #language-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  /* 6) Caja del selector (language-box) */
-  .language-box {
-    position: relative;
-    overflow: hidden;
-    padding: 2rem 3rem;
-    border: 2px solid #000;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  
-    /* Gradient multicolor animado */
-    background: linear-gradient(60deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
-    background-size: 300% 300%;
-    animation: gradientFlowSelector 10s ease infinite, popIn 0.5s ease-out;
-  }
-  .language-box::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 200%;
-    height: 100%;
-    background: repeating-linear-gradient(
-      -45deg,
-      rgba(255,255,255,0.2) 0,
-      rgba(255,255,255,0.2) 1px,
-      transparent 1px,
-      transparent 20px
-    );
-    animation: waveMoveSelector 5s linear infinite;
-    pointer-events: none;
-    opacity: 0.5;
-  }
-  
-  /* 7) Animaciones del modal */
-  @keyframes gradientFlowSelector {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  @keyframes popIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to   { transform: scale(1);   opacity: 1; }
-  }
-  @keyframes waveMoveSelector {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  
-  /* 8) Campos del selector */
-  .language-box label,
-  .language-box select {
-    display: block;
-    width: 100%;
-    margin: 0.5rem 0;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    background: rgba(255,255,255,0.95);
-    border: 2px solid #000;
-    border-radius: 8px;
-    box-sizing: border-box;
-  }
-  .language-box select {
-    appearance: none;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml;charset=UTF-8,\<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'>\ <path fill='%23000' d='M0,0 L5,6 L10,0 Z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 10px 6px;
-    padding-right: 2.5rem;
-  }
-  .language-box button {
-    display: block;
-    margin: 1.5rem auto 0;
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    background: var(--accent, #333);
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: opacity .2s;
-  }
-  .language-box button:hover {
-    opacity: 0.85;
-  }
-  
-  /* 9) Grid de productos (layout genérico) */
-  #products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    justify-items: center;
-    margin: 2rem 0;
-    padding: 0 1rem;
-  }
-  @media (max-width: 1024px) {
-    #products {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 600px) {
-    #products {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  /* Asegurar que el header placeholder ocupe todo el ancho y centre su contenido */
-header#header {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+/* ------------------------------------
+   1. RESET & VARIABLES BASE
+   ------------------------------------ */
+   *,
+   *::before,
+   *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   :root {
+     /* Palette */
+     --color-bg: #f9f9f9;
+     --color-surface: #ffffff;
+     --color-text: #333333;
+     --color-text-alt: #666666;
+     --color-primary: #4A90E2;
+     --color-secondary: #F5A623;
+   
+     /* Spacing */
+     --spacing-xs: 8px;
+     --spacing-sm: 16px;
+     --spacing-md: 24px;
+     --spacing-lg: 32px;
+   
+     /* Borders & shadows */
+     --radius: 8px;
+     --shadow: 0 4px 6px rgba(0,0,0,0.1);
+   
+     /* Typography */
+     --font-heading: 'Montserrat', sans-serif;
+     --font-body: 'Lato', sans-serif;
+   
+     /* Theme variables (light default) */
+     --bg: var(--color-bg);
+     --surface: var(--color-surface);
+     --text: var(--color-text);
+     --text-alt: var(--color-text-alt);
+     --primary: var(--color-primary);
+     --secondary: var(--color-secondary);
+   }
+   
+   /* ------------------------------------
+      2. AUTO-DARK MODE (if no explicit choice)
+      ------------------------------------ */
+   @media (prefers-color-scheme: dark) {
+     :root:not([data-theme]) {
+       --bg: #2b2b2b;
+       --surface: #383838;
+       --text: #e0e0e0;
+       --text-alt: #b0b0b0;
+       /* primary/secondary unchanged or adjust here */
+     }
+   }
+   
+   /* ------------------------------------
+      3. EXPLICIT DARK THEME
+      ------------------------------------ */
+   [data-theme="dark"] {
+     --bg: #2b2b2b;
+     --surface: #383838;
+     --text: #e0e0e0;
+     --text-alt: #b0b0b0;
+     /* primary/secondary unchanged or adjust here */
+   }
+   
+   /* ------------------------------------
+      4. SMOOTH SCROLL & TRANSITIONS
+      ------------------------------------ */
+   html {
+     scroll-behavior: smooth;
+     transition:
+       --bg 0.3s ease,
+       --surface 0.3s ease,
+       --text 0.3s ease,
+       --text-alt 0.3s ease,
+       --primary 0.3s ease,
+       --secondary 0.3s ease;
+   }
+   
+   body,
+   .card,
+   #language-modal,
+   .language-box {
+     transition:
+       background-color 0.3s ease,
+       color 0.3s ease,
+       border-color 0.3s ease;
+   }
+   
+   /* ------------------------------------
+      5. BASE STYLES
+      ------------------------------------ */
+   body {
+     font-family: var(--font-body);
+     background-color: var(--bg);
+     color: var(--text);
+     line-height: 1.6;
+   }
+   
+   .container {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: var(--spacing-md);
+   }
+   
+   a {
+     color: var(--primary);
+     text-decoration: none;
+   }
+   
+   /* ------------------------------------
+      6. BACKGROUND CANVAS
+      ------------------------------------ */
+   #background {
+     position: fixed;
+     inset: 0;
+     overflow: hidden;
+     z-index: -2;
+   }
+   #background canvas {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+   }
+   
+   /* ------------------------------------
+      7. HEADER & THEME TOGGLE
+      ------------------------------------ */
+   header#header {
+     position: sticky;
+     top: 0;
+     background: rgba( var(--bg-rgb, 249,249,249), 0.8 );
+     backdrop-filter: blur(8px);
+     padding: var(--spacing-sm) 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 100;
+   }
+   
+   .site-title {
+     font-family: var(--font-heading);
+     font-size: 2rem;
+     color: var(--text);
+   }
+   
+   #theme-toggle {
+     position: absolute;
+     top: var(--spacing-sm);
+     right: var(--spacing-sm);
+     background: none;
+     border: none;
+     font-size: 1.25rem;
+     cursor: pointer;
+     color: var(--text);
+   }
+   #theme-toggle:focus {
+     outline: 2px solid var(--primary);
+   }
+   
+   /* ------------------------------------
+      8. LANGUAGE SELECTOR MODAL
+      ------------------------------------ */
+   .hidden {
+     display: none !important;
+   }
+   
+   #language-modal {
+     position: fixed;
+     inset: 0;
+     background: rgba(0,0,0,0.5);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     z-index: 200;
+   }
+   
+   .language-box {
+     background: var(--surface);
+     color: var(--text);
+     padding: var(--spacing-lg);
+     border-radius: var(--radius);
+     box-shadow: var(--shadow);
+     text-align: center;
+     width: 90%;
+     max-width: 360px;
+   }
+   
+   .language-box label {
+     font-family: var(--font-heading);
+     margin-bottom: var(--spacing-xs);
+     display: block;
+     color: var(--text);
+   }
+   
+   .language-box select {
+     width: 100%;
+     padding: var(--spacing-sm);
+     border: 1px solid var(--text-alt);
+     border-radius: var(--radius);
+     background: var(--surface);
+     color: var(--text);
+     font-family: var(--font-body);
+   }
+   
+   .language-box button {
+     margin-top: var(--spacing-md);
+     padding: var(--spacing-sm) var(--spacing-lg);
+     background: var(--primary);
+     color: #fff;
+     border: none;
+     border-radius: var(--radius);
+     font-family: var(--font-heading);
+     cursor: pointer;
+   }
+   
+   /* ------------------------------------
+      9. PRODUCT GRID (landing)
+      ------------------------------------ */
+   #products {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+     gap: var(--spacing-lg);
+     padding: var(--spacing-md) 0;
+   }
+   @media (max-width: 768px) {
+     #products {
+       grid-template-columns: 1fr;
+     }
+   }
+   /* Skip link oculto excepto al hacer focus */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 1000;
+  transition: top 0.3s ease;
+  text-decoration: none;
+  font-family: var(--font-heading);
+}
+.skip-link:focus {
+  top: 8px;
+}
+/* Estilos de foco para accesibilidad */
+:focus {
+  outline: 2px dashed var(--secondary);
+  outline-offset: 4px;
 }
 
-/* Hacer que el enlace .site-title sea bloque para que margin auto funcione */
-.site-title {
-  display: block;
-  margin: 0 auto 1rem;
+/* Asegurar que los elementos con role="button" también muestren foco */
+.card[role="button"]:focus {
+  box-shadow: 0 0 0 3px var(--secondary);
+}
+.loader {
+  border: 4px solid rgba(0,0,0,0.1);
+  border-left-color: var(--primary);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+  margin: var(--spacing-md) auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.loader-text {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  color: var(--text);
 }
