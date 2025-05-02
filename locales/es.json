@@ -1,4 +1,4 @@
-// locales/es.json
+
 {
   "products": [
     { "id": "carta-amor",       "title": "Carta de Amor",          "description": "Expresa tus sentimientos más profundos y comparte tu corazón." },
