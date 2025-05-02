@@ -18,32 +18,62 @@ async function loadComponent(id, url) {
   function renderProducts() {
     const container = document.getElementById('products');
     container.innerHTML = '';
+    const iconMap = {
+      'carta-amor': 'heart.svg',
+      'carta-perdon': 'handshake.svg',
+      'carta-agradecimiento': 'gratitude.svg',
+      'carta-cumpleanos': 'cake.svg',
+      'carta-condolencias': 'dove.svg',
+      'carta-futuro': 'clock.svg'
+    };
+  
     translations.products.forEach(p => {
-      const card = document.createElement('article');
-      card.className = `card card--${p.id}`;
+      const card = document.createElement('div');
+      card.className = `card card--${p.id} listing`;
+      card.addEventListener('click', () => {
+        location.href = `product.html?id=${p.id}`;
+      });
+  
+      const shortDesc = p.description.length > 80
+        ? p.description.slice(0, 80).trim() + '…'
+        : p.description;
+  
       card.innerHTML = `
-        <figure class="card__thumb">
-          <img src="assets/images/${p.id}.jpg" alt="${p.title}" />
-        </figure>
-        <div class="card__body">
+        <div class="card__header">
+          <img src="assets/icons/${iconMap[p.id]}" alt="" class="card__icon">
           <h2 class="card__title">${p.title}</h2>
-          <p class="card__desc">${p.description}</p>
-          <a href="product.html?id=${p.id}" class="card__btn">${translations.cta}</a>
+        </div>
+        <p class="card__desc">${shortDesc}</p>
+        <div class="card__footer">
+          <button class="card__btn listing">${translations.cta}</button>
         </div>
       `;
       container.appendChild(card);
     });
   }
   
-  document.getElementById('language').addEventListener('change', async e => {
-    await loadTranslations(e.target.value);
-    renderProducts();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal   = document.getElementById('language-modal');
+    const content = document.getElementById('content');
+    const langSel = document.getElementById('language');
+    const confirm = document.getElementById('language-confirm');
+  
+    confirm.addEventListener('click', async () => {
+      const lang = langSel.value;
+      // Si no hay valor (por si pones placeholder), sales:
+      if (!lang) return;
+  
+      // 1) Ocultar modal y mostrar contenido
+      modal.classList.add('hidden');
+      content.classList.remove('hidden');
+  
+      // 2) Cargar header/footer y traducciones + productos
+      await loadComponent('header', 'components/header.html');
+      await loadComponent('footer', 'components/footer.html');
+      await loadTranslations(lang);
+      renderProducts();
+    });
   });
   
-  // Inicialización al cargar la página
-  (async () => {
-    await loadComponent('header', 'components/header.html');
-    await loadComponent('footer', 'components/footer.html');
-    await loadTranslations('es');
-    renderProducts();
-  })();
+  

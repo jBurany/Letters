@@ -1,11 +1,98 @@
-
 {
+  "cta": "Ver más",
+  "selectPlan": "Elige un plan",
+  "ctaForm": "Continuar",
+  "submitOrder": "Enviar pedido",
+  "productNotFound": "Producto no encontrado.",
+  "thankYou": "¡Gracias por tu pedido! Nos pondremos en contacto pronto.",
+  "selectedPlan": "Plan seleccionado",
   "products": [
-    { "id": "carta-amor",       "title": "Carta de Amor",          "description": "Expresa tus sentimientos más profundos y comparte tu corazón." },
-    { "id": "carta-perdon",     "title": "Carta de Perdón",       "description": "Pide disculpas de manera sincera y reconecta con quien más importa." },
-    { "id": "carta-agradecimiento", "title": "Carta de Agradecimiento", "description": "Muestra gratitud por los gestos que han cambiado tu vida." },
-    { "id": "carta-cumpleanos", "title": "Carta de Cumpleaños",    "description": "Celebra un año más con palabras que llenen de emoción." },
-    { "id": "carta-condolencias","title": "Carta de Condolencias",   "description": "Brinda consuelo y apoyo en momentos difíciles." },
-    { "id": "carta-futuro",     "title": "Carta al Futuro",       "description": "Escribe un mensaje para tu yo del mañana o para alguien especial." }
-  ]
+    {
+      "id": "carta-amor",
+      "title": "Carta de Amor",
+      "description": "Una carta emocionalmente intensa y personalizada, ideal para expresar sentimientos profundos hacia una pareja, interés romántico o incluso un amor no correspondido. Puede ser utilizada para declararse, reconquistar, o simplemente celebrar el vínculo que une a dos personas. Ideal para parejas, enamorados, vínculos a distancia o declaraciones románticas."
+    },
+    {
+      "id": "carta-perdon",
+      "title": "Carta de Perdón",
+      "description": "Una carta pensada para pedir disculpas de manera sincera, reflexiva y empática. Ayuda a poner en palabras el arrepentimiento, asumir la responsabilidad, y expresar el deseo de reparar el vínculo o al menos ofrecer una despedida digna. Útil en conflictos familiares, amistades rotas, relaciones amorosas, o situaciones laborales/emocionales."
+    },
+    {
+      "id": "carta-agradecimiento",
+      "title": "Carta de Agradecimiento",
+      "description": "Una forma delicada y cuidada de expresar gratitud hacia alguien que ha sido significativo. Ideal para agradecer favores, acompañamiento emocional, gestos desinteresados o enseñanzas importantes. Recomendada para mentores, amigos, familiares, jefes o figuras que dejaron huella."
+    },
+    {
+      "id": "carta-cumpleanos",
+      "title": "Carta de Cumpleaños",
+      "description": "Más que una simple felicitación, esta carta es un mensaje emocional y memorable para celebrar la vida de otra persona. Incluye deseos personalizados, palabras que resalten su valor y afecto genuino. Perfecta para sorprender a seres queridos con un detalle único y duradero."
+    },
+    {
+      "id": "carta-condolencias",
+      "title": "Carta de Condolencias",
+      "description": "Una carta empática y respetuosa para acompañar a alguien en un momento de pérdida. Puede ser dirigida a quien ha perdido un ser querido, o incluso escrita como homenaje póstumo hacia quien ha partido. Diseñada para brindar consuelo, acompañar el duelo y honrar la memoria de alguien."
+    },
+    {
+      "id": "carta-futuro",
+      "title": "Carta al Futuro",
+      "description": "Una carta escrita para uno mismo u otra persona, con la intención de ser leída en el futuro. Puede contener sueños, consejos, advertencias, recuerdos o reflexiones. Ideal para aniversarios, promesas, procesos personales, o eventos especiales por venir."
+    }
+  ],
+  "plans": [
+    { "id": "basico",     "name": "Básico",     "words": 50,  "price": "AR$500" },
+    { "id": "intermedio", "name": "Intermedio", "words": 100, "price": "AR$900" },
+    { "id": "completo",   "name": "Completo",   "words": 200, "price": "AR$1 600" }
+  ],
+  "formFields": {
+    "carta-amor": [
+      { "id": "recipientName",      "label": "¿Cuál es el nombre de la persona destinataria?",                         "type": "text",     "required": true },
+      { "id": "relation",           "label": "¿Cuál es tu relación con esta persona? (pareja, enamorado/a, ex…)",     "type": "text",     "required": true },
+      { "id": "feelings",           "label": "¿Qué sentimientos quieres transmitir? (pasión, ternura, deseo…)",        "type": "text",     "required": true },
+      { "id": "specialMemory",      "label": "¿Hay algún recuerdo especial o momento vivido juntos que quieras incluir?", "type": "textarea", "required": false },
+      { "id": "phrase",             "label": "¿Hay una frase o expresión que usen entre ustedes?",                       "type": "text",     "required": false },
+      { "id": "goal",               "label": "¿Qué esperas lograr con esta carta? (declararte, reconquistar…)",        "type": "textarea", "required": false },
+      { "id": "secret",             "label": "¿Hay algo que nunca te animaste a decirle y quisieras incluir aquí?",    "type": "textarea", "required": false }
+    ],
+    "carta-perdon": [
+      { "id": "recipientName", "label": "¿A quién va dirigida la carta? (nombre o relación)",            "type": "text",     "required": true },
+      { "id": "whatHappened",  "label": "¿Qué ocurrió o motivo por el cual pedís perdón?",               "type": "textarea", "required": true },
+      { "id": "currentFeeling","label": "¿Qué sentís hoy respecto a esa situación?",                       "type": "textarea", "required": true },
+      { "id": "reconcile",     "label": "¿Querés recuperar el vínculo o solo expresar tu arrepentimiento?", "type": "select",   "options": ["Recuperar vínculo","Solo arrepentimiento"], "required": true },
+      { "id": "lesson",        "label": "¿Qué aprendiste de todo lo vivido?",                             "type": "textarea", "required": false },
+      { "id": "keyPhrase",     "label": "¿Querés agregar una frase o palabra clave que deba estar presente?", "type": "text",     "required": false }
+    ],
+    "carta-agradecimiento": [
+      { "id": "recipientName", "label": "¿Quién es la persona a quien agradeces? (nombre o relación)",  "type": "text",     "required": true },
+      { "id": "reason",        "label": "¿Qué hizo esa persona por vos que marcó una diferencia?",        "type": "textarea", "required": true },
+      { "id": "qualities",     "label": "¿Qué cualidades valorás más de esa persona?",                   "type": "textarea", "required": true },
+      { "id": "memory",        "label": "¿Querés mencionar algún momento especial que hayan compartido?", "type": "textarea", "required": false },
+      { "id": "impact",        "label": "¿Cómo impactó ese gesto en tu vida o forma de ver las cosas?",    "type": "textarea", "required": false },
+      { "id": "finalMessage",  "label": "¿Qué mensaje final querés dejarle?",                           "type": "textarea", "required": false }
+    ],
+    "carta-cumpleanos": [
+      { "id": "recipientName","label": "¿A quién va dirigida la carta? (nombre o relación)",       "type": "text",     "required": true },
+      { "id": "age",          "label": "¿Cuántos años cumple? (opcional)",                       "type": "number",   "required": false },
+      { "id": "meaning",      "label": "¿Qué significa esta persona para vos?",                  "type": "textarea", "required": true },
+      { "id": "wishes",       "label": "¿Hay algún deseo o mensaje especial que quieras incluir?",  "type": "textarea", "required": false },
+      { "id": "anecdotes",    "label": "¿Querés mencionar recuerdos, anécdotas o frases internas?", "type": "textarea", "required": false },
+      { "id": "feeling",      "label": "¿Cómo te gustaría que se sienta al leer la carta?",       "type": "textarea", "required": false }
+    ],
+    "carta-condolencias": [
+      { "id": "recipientName","label": "¿A quién va dirigida la carta? (nombre o relación)",       "type": "text",     "required": true },
+      { "id": "deceased",     "label": "¿Quién ha fallecido y qué relación tenía con esa persona?", "type": "text",     "required": true },
+      { "id": "comfort",      "label": "¿Qué palabras de consuelo quisieras transmitir?",            "type": "textarea", "required": true },
+      { "id": "highlight",    "label": "¿Qué valor o recuerdo te parece importante destacar?",     "type": "textarea", "required": false },
+      { "id": "spiritual",    "label": "¿Deseás incluir una frase religiosa/espiritual/literaria?",   "type": "text",     "required": false },
+      { "id": "tone",         "label": "¿Más desde la empatía o desde la celebración de la vida?",    "type": "select",   "options": ["Empatía","Celebración"], "required": false }
+    ],
+    "carta-futuro": [
+      { "id": "recipientName", "label": "¿Para quién es la carta? (nombre o “para mí mismo”)",     "type": "text",     "required": true },
+      { "id": "futureDate",    "label": "¿Qué fecha o etapa del futuro debe recibir esta carta?",  "type": "date",     "required": false },
+      { "id": "presentNotes",  "label": "¿Qué cosas del presente querés dejar registradas?",     "type": "textarea", "required": true },
+      { "id": "hopes",         "label": "¿Qué esperás para esa persona en el futuro?",            "type": "textarea", "required": true },
+      { "id": "advice",        "label": "¿Qué consejo, deseo o advertencia querés incluir?",         "type": "textarea", "required": false },
+      { "id": "currentEmotion","label": "¿Qué emociones sentís hoy que quieras que se recuerden?",    "type": "textarea", "required": false }
+    ]
+  },
+  "promptTemplate": "Genera una carta personalizada del tipo: {{tipo_carta}}.\n- Destinatario: {{nombre_destinatario}}\n- Relación del remitente con el destinatario: {{relacion_con_destinatario}}\n- Tono emocional deseado: {{tono_emocional}}\n- Objetivo de la carta: {{objetivo_carta}}\n- Incluir recuerdos/frases clave: {{recuerdos_y_frases}}\n- Nivel de profundidad según el plan: {{plan}}\n- Firmar al final con: {{firma}}\n- ¿Carta anónima?: {{anonima}}\n- ¿Programada para el futuro?: {{programada_futuro}}\nInstrucciones específicas para este tipo de carta:\n{{instrucciones_tipo_carta}}\n\nEscribe un texto fluido, emocional, bien redactado, con estructura coherente, sin hacer referencia directa al formulario o a datos técnicos. Ajusta la longitud, tono y detalle al plan elegido. El resultado debe sentirse humano, íntimo y cuidadosamente elaborado."
 }

@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lettera</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/cards.css">    
 </head>
 <body>
-  <header id="header"></header>
-  <main>
-    <div class="language-selector">
-      <label for="language">Idioma / Language:</label>
-      <select id="language">
-        <option value="es">Español</option>
-        <option value="en">English</option>
-      </select>
+  <!-- 1. Modal de selección de idioma -->
+    <div id="language-modal">
+        <div class="language-box">
+          <label for="language">Selecciona idioma</label>
+          <select id="language">
+            <option value="es" selected>Español</option>
+            <option value="en">English</option>
+          </select>
+          <button id="language-confirm">Continuar</button>
+        </div>
+      </div>
+    
+
+  <!-- 2. Contenido oculto hasta elegir idioma -->
+  <div id="content" class="hidden">
+    <div id="background">
+      <canvas id="particles"></canvas>
+      <canvas id="waves"></canvas>
     </div>
-    <div id="products"></div>
-  </main>
-  <footer id="footer"></footer>
+    <header id="header"></header>
+          
+    <main id="products" class="container"></main>
+    <footer id="footer"></footer>
+  </div>
+
   <script src="js/main.js"></script>
+  <script src="js/background.js"></script>
 </body>
 </html>
