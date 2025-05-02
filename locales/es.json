@@ -1,1 +1,11 @@
-
+// locales/es.json
+{
+  "products": [
+    { "id": "carta-amor",       "title": "Carta de Amor",          "description": "Expresa tus sentimientos más profundos y comparte tu corazón." },
+    { "id": "carta-perdon",     "title": "Carta de Perdón",       "description": "Pide disculpas de manera sincera y reconecta con quien más importa." },
+    { "id": "carta-agradecimiento", "title": "Carta de Agradecimiento", "description": "Muestra gratitud por los gestos que han cambiado tu vida." },
+    { "id": "carta-cumpleanos", "title": "Carta de Cumpleaños",    "description": "Celebra un año más con palabras que llenen de emoción." },
+    { "id": "carta-condolencias","title": "Carta de Condolencias",   "description": "Brinda consuelo y apoyo en momentos difíciles." },
+    { "id": "carta-futuro",     "title": "Carta al Futuro",       "description": "Escribe un mensaje para tu yo del mañana o para alguien especial." }
+  ]
+}
