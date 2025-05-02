@@ -1,1 +1,35 @@
-
+{
+    "products": [
+      {
+        "id": "carta-amor",
+        "title": "Love Letter",
+        "description": "Express your deepest feelings and share your heart."
+      },
+      {
+        "id": "carta-perdon",
+        "title": "Apology Letter",
+        "description": "Offer a sincere apology and reconnect with someone important."
+      },
+      {
+        "id": "carta-agradecimiento",
+        "title": "Thank You Letter",
+        "description": "Show gratitude for the gestures that have changed your life."
+      },
+      {
+        "id": "carta-cumpleanos",
+        "title": "Birthday Letter",
+        "description": "Celebrate another year with words that fill with emotion."
+      },
+      {
+        "id": "carta-condolencias",
+        "title": "Condolence Letter",
+        "description": "Provide comfort and support in difficult times."
+      },
+      {
+        "id": "carta-futuro",
+        "title": "Letter to the Future",
+        "description": "Write a message for your future self or someone special."
+      }
+    ]
+  }
+  

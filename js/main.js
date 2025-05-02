@@ -1,17 +1,19 @@
+// js/main.js
+
 // Carga un fragmento HTML en un elemento por su ID
-en async function loadComponent(id, url) {
+async function loadComponent(id, url) {
     const res = await fetch(url);
     document.getElementById(id).innerHTML = await res.text();
 }
 
-// Traducciones cargadas desde JSON\let translations = {};
+// Traducciones cargadas desde JSON
+let translations = {};
 
 async function loadTranslations(lang) {
     const res = await fetch(`locales/${lang}.json`);
     translations = await res.json();
 }
 
-// Renderiza las tarjetas de producto según translations.products
 function renderProducts() {
     const container = document.getElementById('products');
     container.innerHTML = '';
@@ -30,8 +32,7 @@ document.getElementById('language').addEventListener('change', async e => {
     renderProducts();
 });
 
-// Inicialización al cargar la página
-en (async () => {
+(async () => {
     await loadComponent('header', 'components/header.html');
     await loadComponent('footer', 'components/footer.html');
     await loadTranslations('es');
