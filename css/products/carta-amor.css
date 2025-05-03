@@ -1,0 +1,71 @@
+/* css/products/carta-amor.css */
+
+/* 1) Variables de color */
+:root {
+    --accent: #f67280;
+    --accent-light: rgba(246,114,128,0.1);
+    --accent-dark: #e0556e;
+  }
+  
+  /* 2) Hero del producto */
+  .product-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent-light), #ffffff);
+    border-radius: var(--radius);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    text-align: center;
+  }
+  
+  /* Quitar el icono gigante */
+  .product-hero__icon {
+    display: none;
+  }
+  
+  /* Título con subrayado en degradado */
+  .product-hero__title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+  .product-hero__title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 0.3em;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0.4;
+    z-index: -1;
+  }
+  
+  /* Descripción */
+  .product-hero__desc {
+    font-size: 1.1rem;
+    color: var(--text-alt);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
+  /* 3) Lista de planes: acentos rosados */
+  .plan-card {
+    border: 2px solid var(--accent);
+  }
+  .plan-card__name {
+    color: var(--accent);
+  }
+  .plan-card__btn {
+    background: var(--accent);
+    transition: background .2s ease;
+  }
+  .plan-card__btn:hover {
+    background: var(--accent-dark);
+  }
+  

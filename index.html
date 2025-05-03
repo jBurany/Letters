@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="css/cards.css"/>
 </head>
 <body>
-  <!-- 1) Enlace para saltar directamente al contenido -->
+  <!-- Skip-Link para accesibilidad -->
   <a href="#main-content" class="skip-link">Ir al contenido</a>
 
-  <!-- 2) Modal de selección de idioma con ARIA -->
+  <!-- Modal de idioma -->
   <div
     id="language-modal"
     role="dialog"
@@ -28,24 +28,37 @@
     </div>
   </div>
 
-  <!-- 3) Contenido principal oculto hasta escoger idioma -->
+  <!-- Contenido principal (oculto hasta elegir idioma) -->
   <div id="content" class="hidden">
-    <main id="main-content" class="container">
+    <main id="main-content" class="container" role="main">
       <!-- Fondo animado -->
       <div id="background">
         <canvas id="particles"></canvas>
         <canvas id="waves"></canvas>
       </div>
-      <!-- Header dinámico -->
+
+      <!-- Header inyectado por JS -->
       <header id="header"></header>
-      <!-- Grid de productos -->
-      <section id="products"></section>
-      <!-- Footer dinámico -->
+
+      <!-- Título de sección para screen readers -->
+      <h2 id="products-heading" class="visually-hidden">Nuestros Productos</h2>
+      <!-- Aquí se inyectan las tarjetas -->
+      <section id="products" class="container" aria-labelledby="products-heading"></section>
+
+      <!-- Footer inyectado por JS -->
       <footer id="footer"></footer>
     </main>
   </div>
 
   <!-- Scripts -->
+  <script>
+    // Pre-aplicamos el tema para evitar parpadeo
+    (()=>{
+      const t = localStorage.getItem('theme')
+        || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <script src="js/main.js"></script>
   <script src="js/background.js"></script>
 </body>

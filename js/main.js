@@ -1,130 +1,126 @@
 // js/main.js
 
-// Global para almacenar traducciones
 let translations = {};
 
-/**
- * Carga un fragmento HTML en el elemento con el id dado.
- */
 async function loadComponent(id, url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Error cargando ${url}: ${res.statusText}`);
-  const html = await res.text();
-  document.getElementById(id).innerHTML = html;
+  document.getElementById(id).innerHTML = await res.text();
 }
 
-/**
- * Carga el JSON de traducciones para el idioma seleccionado.
- */
 async function loadTranslations(lang) {
   const res = await fetch(`locales/${lang}.json`);
-  if (!res.ok) throw new Error(`Error cargando locales/${lang}.json: ${res.statusText}`);
+  if (!res.ok) throw new Error(`Error cargando locales/${lang}.json}: ${res.statusText}`);
   translations = await res.json();
 }
 
-/**
- * Renderiza las tarjetas de productos en la landing.
- */
 function renderProducts() {
   const container = document.getElementById('products');
+  if (!container || !Array.isArray(translations.products)) return;
   container.innerHTML = '';
-
   const iconMap = {
-    'carta-amor': 'heart.svg',
-    'carta-perdon': 'handshake.svg',
-    'carta-agradecimiento': 'gratitude.svg',
-    'carta-cumpleanos': 'cake.svg',
-    'carta-condolencias': 'dove.svg',
-    'carta-futuro': 'clock.svg'
+    'carta-amor':'heart.svg','carta-perdon':'handshake.svg',
+    'carta-agradecimiento':'gratitude.svg','carta-cumpleanos':'cake.svg',
+    'carta-condolencias':'dove.svg','carta-futuro':'clock.svg'
   };
-
   translations.products.forEach(p => {
     const card = document.createElement('div');
     card.className = `card card--${p.id} listing`;
-    card.addEventListener('click', () => {
-      location.href = `product.html?id=${p.id}`;
-    });
-    // js/main.js → renderProducts()
-    card.setAttribute('role', 'button');
-    card.setAttribute('tabindex', '0');
-    card.addEventListener('keydown', e => {
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.onclick = () => location.href = `product.html?id=${p.id}`;
+    card.onkeydown = e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         card.click();
       }
-    });
-
-
-    // Descripción truncada
-    const fullDesc = p.description;
-    const shortDesc = fullDesc.length > 80
-      ? fullDesc.slice(0, 80).trim() + '…'
-      : fullDesc;
-
+    };
+    const shortDesc = p.description.length > 80
+      ? p.description.slice(0,80).trim() + '…'
+      : p.description;
     card.innerHTML = `
       <div class="card__header">
-        <img src="assets/icons/${iconMap[p.id]}" alt="" class="card__icon">
+        <img src="assets/icons/${iconMap[p.id]}" class="card__icon" alt="">
         <h2 class="card__title">${p.title}</h2>
       </div>
       <p class="card__desc">${shortDesc}</p>
       <div class="card__footer">
-        <button class="card__btn listing">${translations.cta}</button>
+        <button class="card__btn listing">${translations.cta || 'Ver más'}</button>
       </div>
     `;
     container.appendChild(card);
   });
 }
 
-/**
- * Inicializa el toggle de tema Claro/Oscuro.
- * Debe llamarse después de inyectar el header.
- */
 function initThemeToggle() {
   const toggle = document.getElementById('theme-toggle');
   if (!toggle) return;
-
   const root = document.documentElement;
   const saved = localStorage.getItem('theme');
   const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const theme = saved || system;
-
+  let theme = saved || system;
   root.setAttribute('data-theme', theme);
   toggle.textContent = theme === 'dark' ? '🌕' : '🌑';
-
-  toggle.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    const next    = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    toggle.textContent = next === 'dark' ? '🌕' : '🌑';
-  });
+  toggle.onclick = () => {
+    theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    toggle.textContent = theme === 'dark' ? '🌕' : '🌑';
+  };
 }
 
-// Al cargar el DOM, gestionamos el selector de idioma
-document.addEventListener('DOMContentLoaded', () => {
-  const modal   = document.getElementById('language-modal');
+function showLanguageModal() {
+  const modal = document.getElementById('language-modal');
   const content = document.getElementById('content');
-  const langSel = document.getElementById('language');
-  const confirm = document.getElementById('language-confirm');
+  if (modal && content) {
+    modal.classList.remove('hidden');
+    content.classList.add('hidden');
+  }
+}
 
-  confirm.addEventListener('click', async () => {
-    const lang = langSel.value;
-    if (!lang) return;
-
-    // Ocultamos modal y mostramos contenido
+async function applyLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  const modal = document.getElementById('language-modal');
+  const content = document.getElementById('content');
+  if (modal && content) {
     modal.classList.add('hidden');
     content.classList.remove('hidden');
+  }
+  // header/footer + theme
+  await loadComponent('header','components/header.html');
+  initThemeToggle();
+  // enlazar globo SI existe
+  document.getElementById('lang-toggle')?.addEventListener('click', showLanguageModal);
+  await loadComponent('footer','components/footer.html');
+  // traducciones + productos
+  await loadTranslations(lang);
+  renderProducts();
+}
 
-    // 1) Header + toggle de tema
-    await loadComponent('header', 'components/header.html');
-    initThemeToggle();
+document.addEventListener('DOMContentLoaded', async () => {
+  // 1) siempre inyectamos header/footer y tema
+  await loadComponent('header','components/header.html');
+  initThemeToggle();
+  await loadComponent('footer','components/footer.html');
 
-    // 2) Footer
-    await loadComponent('footer', 'components/footer.html');
+  // 2) idioma
+  const savedLang = localStorage.getItem('lang');
+  const confirmBtn = document.getElementById('language-confirm');
+  const langSel    = document.getElementById('language');
 
-    // 3) Traducciones y renderizado de productos
-    await loadTranslations(lang);
-    renderProducts();
-  });
+  if (confirmBtn && langSel) {
+    confirmBtn.addEventListener('click', () => applyLanguage(langSel.value));
+    if (savedLang) {
+      await applyLanguage(savedLang);
+    } else {
+      showLanguageModal();
+    }
+  } else if (savedLang) {
+    // No estamos en la landing (no hay modal) pero sí cargamos traducciones
+    await loadTranslations(savedLang);
+    // Y si hay container de productos, lo renderizamos
+    if (document.getElementById('products')) {
+      renderProducts();
+    }
+  }
 });
-
