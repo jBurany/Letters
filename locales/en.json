@@ -1,99 +1,46 @@
 {
-    "cta": "Learn more",
-    "selectPlan": "Choose a plan",
-    "ctaForm": "Continue",
-    "submitOrder": "Submit order",
-    "productNotFound": "Product not found.",
-    "thankYou": "Thank you for your order! We will get in touch soon.",
-    "selectedPlan": "Selected plan",
-    "products": [
-      {
-        "id": "carta-amor",
-        "title": "Love Letter",
-        "description": "An emotionally intense and personalized letter, ideal for expressing deep feelings toward a partner, romantic interest, or even unrequited love. It can be used to declare yourself, rekindle a relationship, or simply celebrate the bond that unites two people. Perfect for couples, lovers, long-distance relationships, or romantic declarations."
-      },
-      {
-        "id": "carta-perdon",
-        "title": "Apology Letter",
-        "description": "A letter designed to offer sincere, reflective, and empathetic apologies. It helps put into words remorse, take responsibility, and express the desire to repair the bond or at least offer a dignified farewell. Useful in family conflicts, broken friendships, romantic relationships, or professional/emotional situations."
-      },
-      {
-        "id": "carta-agradecimiento",
-        "title": "Thank-You Letter",
-        "description": "A delicate and thoughtful way to express gratitude toward someone who has been significant in your life. Ideal for thanking for favors, emotional support, selfless gestures, or important teachings. Recommended for mentors, friends, family members, bosses, or influential figures."
-      },
-      {
-        "id": "carta-cumpleanos",
-        "title": "Birthday Letter",
-        "description": "More than just a simple greeting, this is an emotional and memorable message to celebrate someone else's life. Includes personalized wishes and words that highlight their value and genuine affection. Perfect for surprising loved ones with a unique and lasting keepsake."
-      },
-      {
-        "id": "carta-condolencias",
-        "title": "Condolence Letter",
-        "description": "An empathetic and respectful letter to support someone in a moment of loss. Can be addressed to someone who has lost a loved one or written as a posthumous tribute to someone who has passed away. Designed to provide comfort, accompany grief, and honor someone's memory."
-      },
-      {
-        "id": "carta-futuro",
-        "title": "Letter to the Future",
-        "description": "A letter written for yourself or another person, intended to be read at a future date. Can contain dreams, advice, warnings, memories, or reflections. Ideal for anniversaries, promises, personal milestones, or upcoming special events."
-      }
-    ],
-    "plans": [
-      { "id": "basico",     "name": "Basic",     "words": 50,  "price": "$5"  },
-      { "id": "intermedio", "name": "Standard",  "words": 100, "price": "$9"  },
-      { "id": "completo",   "name": "Premium",   "words": 200, "price": "$16" }
-    ],
-    "formFields": {
-      "carta-amor": [
-        { "id": "recipientName",  "label": "What is the recipient’s name?",                                                                                  "type": "text",     "required": true },
-        { "id": "relation",       "label": "What is your relationship to this person? (partner, lover, ex, someone unaware, etc.)",                       "type": "text",     "required": true },
-        { "id": "feelings",       "label": "What feelings do you want to convey? (passion, tenderness, desire, nostalgia, etc.)",                         "type": "text",     "required": true },
-        { "id": "specialMemory",  "label": "Is there a special memory or moment you’ve shared together that you’d like to include?",                     "type": "textarea", "required": false },
-        { "id": "phrase",         "label": "Is there a phrase or expression you two share?",                                                            "type": "text",     "required": false },
-        { "id": "goal",           "label": "What do you hope to achieve with this letter? (declare love, rekindle the relationship, express love, etc.)", "type": "textarea", "required": false },
-        { "id": "secret",         "label": "Is there something you’ve never dared to say and would like to include here?",                                       "type": "textarea", "required": false }
-      ],
-      "carta-perdon": [
-        { "id": "recipientName",  "label": "Who is this apology addressed to? (name or relationship)",                                                   "type": "text",     "required": true },
-        { "id": "whatHappened",   "label": "What happened or what was the reason you’re apologizing?",                                              "type": "textarea", "required": true },
-        { "id": "currentFeeling", "label": "How do you feel today about that situation?",                                                         "type": "textarea", "required": true },
-        { "id": "reconcile",      "label": "Do you want to restore the relationship or just express remorse?",                                    "type": "select",   "options": ["Restore relationship","Just remorse"], "required": true },
-        { "id": "lesson",         "label": "What have you learned from the experience?",                                                           "type": "textarea", "required": false },
-        { "id": "keyPhrase",      "label": "Would you like to include a specific phrase or keyword?",                                                "type": "text",     "required": false }
-      ],
-      "carta-agradecimiento": [
-        { "id": "recipientName",  "label": "Who are you thanking? (name or relationship)",                                                         "type": "text",     "required": true },
-        { "id": "reason",         "label": "What did this person do for you that made a difference?",                                              "type": "textarea", "required": true },
-        { "id": "qualities",      "label": "What qualities do you value most in this person?",                                                    "type": "textarea", "required": true },
-        { "id": "memory",         "label": "Would you like to mention a special moment you shared?",                                                   "type": "textarea", "required": false },
-        { "id": "impact",         "label": "How did that gesture impact your life or perspective?",                                                "type": "textarea", "required": false },
-        { "id": "finalMessage",   "label": "What final message would you like to leave?",                                                         "type": "textarea", "required": false }
-      ],
-      "carta-cumpleanos": [
-        { "id": "recipientName",  "label": "Who is this birthday letter for? (name or relationship)",                                              "type": "text",     "required": true },
-        { "id": "age",            "label": "How old are they turning? (optional)",                                                            "type": "number",   "required": false },
-        { "id": "meaning",        "label": "What does this person mean to you?",                                                               "type": "textarea", "required": true },
-        { "id": "wishes",         "label": "Is there a special wish or message you want to include?",                                              "type": "textarea", "required": false },
-        { "id": "anecdotes",      "label": "Would you like to mention memories, anecdotes, or inside jokes?",                                      "type": "textarea", "required": false },
-        { "id": "feeling",        "label": "How would you like them to feel when reading the letter?",                                           "type": "textarea", "required": false }
-      ],
-      "carta-condolencias": [
-        { "id": "recipientName",  "label": "Who is this condolence letter addressed to? (name or relationship)",                               "type": "text",     "required": true },
-        { "id": "deceased",       "label": "Who has passed away and what was their relationship to the recipient?",                           "type": "text",     "required": true },
-        { "id": "comfort",        "label": "What comforting words would you like to convey?",                                                      "type": "textarea", "required": true },
-        { "id": "highlight",      "label": "What valuable memory or quality of the deceased would you like to highlight?",                        "type": "textarea", "required": false },
-        { "id": "spiritual",      "label": "Would you like to include a religious, spiritual, or literary quote? (optional)",                      "type": "text",     "required": false },
-        { "id": "tone",           "label": "Would you prefer the tone to be more about empathy or celebration of life?",                         "type": "select",   "options": ["Empathy","Celebration"], "required": false }
-      ],
-      "carta-futuro": [
-        { "id": "recipientName",  "label": "Who is this letter for? (name or “my future self”)",                                                   "type": "text",     "required": true },
-        { "id": "futureDate",     "label": "What future date or stage should receive this letter? (optional)",                           "type": "date",     "required": false },
-        { "id": "presentNotes",   "label": "What things from the present would you like to record?",                                        "type": "textarea", "required": true },
-        { "id": "hopes",          "label": "What do you hope for this person in the future?",                                              "type": "textarea", "required": true },
-        { "id": "advice",         "label": "What advice, wish, or warning would you like to include? (optional)",                             "type": "textarea", "required": false },
-        { "id": "currentEmotion", "label": "What emotions are you feeling today that you want them to remember? (optional)",                  "type": "textarea", "required": false }
-      ]
+  "products": [
+    {
+      "id": "carta-amor",
+      "title": "Love Letter",
+      "description": "Express your feelings with unforgettable words.",
+      "img": "assets/images/carta-amor.jpg"
     },
-    "promptTemplate": "Generate a personalized letter of type: {{tipo_carta}}.\n- Recipient: {{nombre_destinatario}}\n- Sender’s relationship to recipient: {{relacion_con_destinatario}}\n- Desired emotional tone: {{tono_emocional}}\n- Letter objective: {{objetivo_carta}}\n- Include memories/key phrases: {{recuerdos_y_frases}}\n- Depth level according to the plan: {{plan}}\n- Sign at the end with: {{firma}}\n- Anonymous letter?: {{anonima}}\n- Scheduled for the future?: {{programada_futuro}}\nSpecific instructions for this type of letter:\n{{instrucciones_tipo_carta}}\n\nWrite a fluid, emotional, well-written text with a coherent structure, without direct reference to the form or technical data. Adjust length, tone, and detail to the chosen plan. The result should feel human, intimate, and carefully crafted."
-  }
-  
+    {
+      "id": "carta-perdon",
+      "title": "Apology Letter",
+      "description": "Reconcile hearts with a sincere and emotional message.",
+      "img": "assets/images/carta-perdon.jpg"
+    },
+    {
+      "id": "carta-agradecimiento",
+      "title": "Thank You Letter",
+      "description": "Show gratitude with a warm and heartfelt note.",
+      "img": "assets/images/carta-agradecimiento.jpg"
+    },
+    {
+      "id": "carta-cumpleanos",
+      "title": "Birthday Letter",
+      "description": "Celebrate with unique words that light up the day.",
+      "img": "assets/images/carta-cumpleanos.jpg"
+    },
+    {
+      "id": "carta-condolencias",
+      "title": "Condolence Letter",
+      "description": "Offer comfort with a respectful and warm message.",
+      "img": "assets/images/carta-condolencias.jpg"
+    },
+    {
+      "id": "carta-futuro",
+      "title": "Letter to the Future",
+      "description": "Send a message to open in the future and surprise yourself.",
+      "img": "assets/images/carta-futuro.jpg"
+    }
+  ],
+  "plans": [
+    { "id": "basic",   "name": "Basic",       "desc": "Up to 100 words",   "price": "$5",  "cta": "Select" },
+    { "id": "premium", "name": "Premium",     "desc": "Up to 250 words",   "price": "$10", "cta": "Select" },
+    { "id": "deluxe",  "name": "Deluxe",      "desc": "Up to 500 words",   "price": "$20", "cta": "Select" }
+  ],
+  "cta": "Learn more"
+}

@@ -1,13 +1,13 @@
-<header>
-   <!-- components/header.html -->
-<a href="index.html" class="site-title">
-  Letters
-  <svg class="waves" viewBox="0 0 200 20" preserveAspectRatio="none">
-    <path d="M0,10 C50,0 100,20 150,10 C200,0 250,20 300,10"
-          fill="none" stroke="#000" stroke-width="1"/>
-  </svg>
-</a>
-<button id="theme-toggle" aria-label="Alternar tema" title="Alternar tema">🌓</button>
-<button id="lang-toggle" aria-label="Cambiar idioma">🌐</button>
-  </header>
-  
+<!-- components/header.html -->
+<header class="site-header container flex items-center justify-between py-4">
+  <!-- Logo / Título -->
+  <a href="index.html" data-link class="site-title font-display text-2xl text-primary">Lettera</a>
+
+  <!-- Controles: selección de idioma y tema -->
+  <div class="header-controls flex items-center gap-4">
+    <!-- Alternar idioma -->
+    <button id="lang-toggle" class="btn btn-secondary p-2" aria-label="Cambiar idioma">🌐</button>
+    <!-- Alternar modo claro/oscuro -->
+    <button id="theme-toggle" class="btn btn-secondary p-2" aria-label="Cambiar tema">🌑</button>
+  </div>
+</header>

@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Detalle – Letters</title>
-  <link rel="stylesheet" href="css/global.css"/>
-  <link rel="stylesheet" href="css/cards.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lettera - Detalle de Carta</title>
+
+  <!-- Fuentes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/product.css">  
 </head>
 <body>
-  <div id="content" class="container">
-    <!-- Fondo animado -->
-    <div id="background">
-      <canvas id="particles"></canvas>
-      <canvas id="waves"></canvas>
-    </div>
+  <!-- Header dinámico -->
+  <div id="header"></div>
+  
+  <!-- Contenedor principal para SPA -->
+  <div id="page-container">
+    <main class="product-page container py-16">
+      <!-- Detalle del producto (hero) -->
+      <section id="product-detail" class="product-hero grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Inyectado por JS: imagen, título y descripción -->
+      </section>
 
-    <!-- Header dinámico -->
-    <header id="header"></header>
-
-    <!-- Contenido de producto -->
-    <main id="main-content" role="main">
-      <nav aria-label="Breadcrumb" class="breadcrumb">
-        <a href="index.html">🏠 Inicio</a>
-        <span>›</span>
-        <span id="breadcrumb-current">Producto</span>
-      </nav>
-      <button class="btn-back" onclick="history.back()">← Volver</button>
-      
-      <section id="product-detail"></section>
-      <section id="plan-list"></section>
+      <!-- Listado de planes y precios -->
+      <section id="plan-list" class="plans grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+        <!-- Inyectado por JS: tarjetas de planes -->
+      </section>
     </main>
-
-    <!-- Footer dinámico -->
-    <footer id="footer"></footer>
   </div>
-  <script src="js/background.js"></script>
+
+  <!-- Footer dinámico -->
+  <div id="footer"></div>
+
+  <!-- Scripts: Navegación SPA, Lógica de producto y Fondo Animado -->
+  <script src="js/navigation.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/product.js"></script>
+  <script src="js/background.js"></script>
+  
 </body>
 </html>

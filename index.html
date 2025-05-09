@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Letters</title>
-  <link rel="stylesheet" href="css/global.css"/>
-  <link rel="stylesheet" href="css/cards.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lettera - Cartas Personalizadas con Emoción</title>
+
+  <<!-- Fuentes y Preconexiones -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Estilos globales y específicos de index -->
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/index.css">
+
 </head>
 <body>
-  <!-- Skip-Link para accesibilidad -->
-  <a href="#main-content" class="skip-link">Ir al contenido</a>
+  <!-- Header dinámico -->
+<div id="header"></div>
+<canvas id="bg-canvas" class="w-full h-full rounded-lg shadow-xl"></canvas>
+  <!-- Modal de selección de idioma -->
+  <!-- Modal de selección de idioma -->
+<div id="language-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="language-heading">
+  <div class="modal-content shadow-lg rounded-lg p-6">
+    <h2 id="language-heading" class="text-xl font-medium mb-4">Selecciona tu idioma</h2>
+    <select id="language" class="p-2 border rounded mb-4 w-full">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+    <button id="language-confirm" class="btn btn-primary w-full">Continuar</button>
+  </div>
+</div>
 
-  <!-- Modal de idioma -->
-  <div
-    id="language-modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="lang-label"
-  >
-    <div class="language-box">
-      <label id="lang-label" for="language">Selecciona idioma</label>
-      <select id="language">
-        <option value="es" selected>Español</option>
-        <option value="en">English</option>
-      </select>
-      <button id="language-confirm">Continuar</button>
+
+  <!-- Contenedor principal para SPA -->
+  <div id="page-container">
+    <!-- Contenido oculto hasta elección de idioma -->
+    <div id="content" class="hidden">
+
+      <!-- Sección Hero con fondo dinámico -->
+      <section class="hero container flex items-center justify-between py-16">
+        <div class="hero__text max-w-lg">
+          <h1 class="text-5xl font-display mb-4">Lettera</h1>
+          <p class="text-lg mb-6">Cartas personalizadas generadas por IA con un toque 100% humano. Emoción, cercanía y estilo premium.</p>
+          <a href="#products" data-link class="btn btn-primary">Explorar cartas</a>
+        </div>
+      </section>
+
+      <!-- Sección Productos -->
+      <section id="products" class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-16" aria-labelledby="products-heading">
+        <h2 id="products-heading" class="sr-only">Nuestros Productos</h2>
+        <!-- JS inyectará las tarjetas aquí -->
+      </section>
+
+      <!-- Footer dinámico -->
     </div>
   </div>
 
-  <!-- Contenido principal (oculto hasta elegir idioma) -->
-  <div id="content" class="hidden">
-    <main id="main-content" class="container" role="main">
-      <!-- Fondo animado -->
-      <div id="background">
-        <canvas id="particles"></canvas>
-        <canvas id="waves"></canvas>
-      </div>
+  <div id="footer"></div>
 
-      <!-- Header inyectado por JS -->
-      <header id="header"></header>
-
-      <!-- Título de sección para screen readers -->
-      <h2 id="products-heading" class="visually-hidden">Nuestros Productos</h2>
-      <!-- Aquí se inyectan las tarjetas -->
-      <section id="products" class="container" aria-labelledby="products-heading"></section>
-
-      <!-- Footer inyectado por JS -->
-      <footer id="footer"></footer>
-    </main>
-  </div>
-
-  <!-- Scripts -->
-  <script>
-    // Pre-aplicamos el tema para evitar parpadeo
-    (()=>{
-      const t = localStorage.getItem('theme')
-        || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
+  <!-- Scripts: Navegación SPA, Lógica Principal y Fondo Animado -->
+  <script src="js/navigation.js"></script>
   <script src="js/main.js"></script>
   <script src="js/background.js"></script>
 </body>

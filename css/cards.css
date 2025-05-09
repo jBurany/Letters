@@ -1,91 +1,68 @@
-/* ====================================
-   1) ESTRUCTURA BASICS DE LA CARD
-   ==================================== */
-   .card {
-    /* necesario para perspectiva */
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: transform .3s ease, box-shadow .3s ease;
-  }
-  
-  .card:hover {
-    /* rotamos un poco en X e Y y ampliamos */
-    transform: perspective(1000px) rotateX(6deg) rotateY(-6deg) scale(1.03);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-  }
-  
-  
-  /* Header: icono + título */
-  .card__header {
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-sm);
-    background: rgba(249,249,249,0.6);
-  }
-  .card__icon {
-    width: 32px;
-    height: 32px;
-    margin-right: var(--spacing-sm);
-    fill: currentColor; /* tus SVG deben usar fill="currentColor" */
-    color: var(--accent);
-  }
-  .card__title {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    margin: 0;
-    flex: 1;
-    color: var(--accent);
-  }
-  
-  /* Descripción breve */
-  .card__desc {
-    flex: 1;
-    padding: 0 var(--spacing-sm);
-    font-size: 0.9rem;
-    color: var(--color-text-alt);
-    line-height: 1.4;
-    margin: var(--spacing-sm) 0;
-  }
-  
-  /* Footer: botón */
-  .card__footer {
-    padding: var(--spacing-sm);
-    text-align: center;
-  }
-  .card__btn.listing {
-    padding: var(--spacing-xs) var(--spacing-md);
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--border-radius);
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background .2s;
-  }
-  .card__btn.listing:hover {
-    background: var(--color-secondary);
-  }
-  
-  /* ====================================
-     2) PALETAS POR TIPO DE CARTA
-     ==================================== */
-  .card--carta-amor {
-    --accent: #E66465;
-  }
-  .card--carta-perdon {
-    --accent: #6B5B95;
-  }
-  .card--carta-agradecimiento {
-    --accent: #FEB236;
-  }
-  .card--carta-cumpleanos {
-    --accent: #D64161;
-  }
-  .card--carta-condolencias {
-    --accent: #2A7F62;
-  }
-  .card--carta-futuro {
-    --accent: #009B77;
-  }
-  
+/* css/cards.css */
+
+/* Estilos de tarjetas de producto */
+.card {
+  display: block;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Encabezado de la tarjeta */
+.card__header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+}
+
+.card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Descripción breve */
+.card__desc {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Pie con botón */
+.card__footer {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #eee;
+}
+
+.card__btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.card__btn:hover {
+  background-color: var(--color-primary-hover);
+}

@@ -1,39 +1,45 @@
 // js/payment.js
 
+// Inicializa la página de pago: carga datos y configura botones
 async function initPaymentPage() {
-    // 1) Header/footer + theme
-    await loadComponent('header','components/header.html');
-    initThemeToggle();
-    await loadComponent('footer','components/footer.html');
-  
-    // 2) Leer URL params
-    const params    = new URLSearchParams(location.search);
-    const producto  = params.get('producto');
-    const plan      = params.get('plan');
-    const status    = params.get('status'); // tras checkout
-  
-    // 3) Si venimos del gateway con éxito, redirigir al formulario
-    if (status === 'success' && producto && plan) {
-      return location.href = `formulario.html?producto=${producto}&plan=${plan}`;
-    }
-  
-    // 4) Sino, creamos el link de pago
-    try {
-      const res = await fetch('/api/create-payment-link', {
-        method: 'POST',
-        headers: { 'Content-Type':'application/json' },
-        body: JSON.stringify({ producto, plan })
-      });
-      const { url } = await res.json();
-      // redirigir al usuario
-      window.location.href = url;
-    } catch (err) {
-      console.error(err);
-      document.getElementById('payment-container').innerHTML = `
-        <p>Error al generar enlace de pago. Intenta nuevamente más tarde.</p>
-      `;
-    }
-  }
-  
-  document.addEventListener('DOMContentLoaded', initPaymentPage);
-  
+  // Parámetros de URL
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('product');
+  const planId = params.get('plan');
+
+  // Carga traducciones según idioma guardado
+  const lang = localStorage.getItem('lang') || 'es';
+  await loadTranslations(lang);
+
+  // Busca producto y plan
+  const product = translations.products.find(p => p.id === productId);
+  const plan = Array.isArray(translations.plans)
+    ? translations.plans.find(pl => pl.id === planId)
+    : null;
+
+  // Rellena resumen
+  document.getElementById('summary-product').textContent = product ? product.title : '';
+  document.getElementById('summary-plan').textContent = plan ? plan.name : '';
+  document.getElementById('summary-price').textContent = plan ? plan.price : '';
+
+  // Configura botones de pago
+  const btnPayPal = document.getElementById('btn-paypal');
+  const btnMercadoPago = document.getElementById('btn-mercadopago');
+
+  btnPayPal.addEventListener('click', () => {
+    // TODO: integrar con tu backend para generar orden PayPal
+    // Placeholder: redirige a PayPal con parámetros básicos
+    const url = `https://www.paypal.com/checkout?amount=${encodeURIComponent(plan.price)}&currency=USD&item_name=${encodeURIComponent(product.title)}`;
+    window.location.href = url;
+  });
+
+  btnMercadoPago.addEventListener('click', () => {
+    // TODO: generar preferencia de pago vía API MercadoPago
+    // Placeholder: redirige a la pasarela de MercadoPago
+    const url = `https://www.mercadopago.com/checkout?amount=${encodeURIComponent(plan.price)}&item_name=${encodeURIComponent(product.title)}`;
+    window.location.href = url;
+  });
+}
+
+// Ejecuta al cargar la página
+document.addEventListener('DOMContentLoaded', initPaymentPage);

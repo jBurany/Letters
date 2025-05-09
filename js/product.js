@@ -36,13 +36,6 @@ async function initProductPage() {
     'carta-condolencias':'dove.svg','carta-futuro':'clock.svg'
   };
   detailEl.innerHTML = `
-  <!-- Breadcrumb y Volver -->
-  <nav aria-label="Breadcrumb" class="breadcrumb">
-    <a href="index.html">🏠 Inicio</a>
-    <span>›</span>
-    <span id="breadcrumb-current">${prod.title}</span>
-  </nav>
-  <button class="btn-back" onclick="history.back()">← Volver</button>
 
   <!-- Hero del producto -->
   <div class="product-hero">

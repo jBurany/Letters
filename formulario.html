@@ -1,3 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lettera - Completa tu pedido</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="css/global.css">
- 
- 
+<link rel="stylesheet" href="css/form.css">
+
+</head>
+<body>
+  <!-- Header dinámico -->
+  <div id="header"></div>
+
+  <!-- Contenedor principal para SPA -->
+  <div id="page-container">
+    <main class="form-page container py-16 max-w-xl">
+      <h1 class="text-4xl font-display mb-6">Datos de tu carta</h1>
+      <!-- Formulario de pedido -->
+      <form id="order-form" class="grid grid-cols-1 gap-6">
+        <!-- Hidden fields for product and plan -->
+        <input type="hidden" id="product-id" name="productId">
+        <input type="hidden" id="plan-id" name="planId">
+
+        <!-- Paso 1: Información del remitente -->
+        <fieldset class="p-6 border rounded-lg">
+          <legend class="text-xl font-medium mb-4">1. Tu información</legend>
+          <div class="form-group mb-4">
+            <label for="sender-name">Tu nombre</label>
+            <input type="text" id="sender-name" name="senderName" required placeholder="Ej. Juan Pérez" class="input">
+          </div>
+          <div class="form-group">
+            <label for="sender-email">Tu correo electrónico</label>
+            <input type="email" id="sender-email" name="senderEmail" required placeholder="ejemplo@mail.com" class="input">
+          </div>
+        </fieldset>
+
+        <!-- Paso 2: Información del destinatario -->
+        <fieldset class="p-6 border rounded-lg">
+          <legend class="text-xl font-medium mb-4">2. Destinatario</legend>
+          <div class="form-group mb-4">
+            <label for="recipient-name">Nombre</label>
+            <input type="text" id="recipient-name" name="recipientName" required placeholder="Ej. María Gómez" class="input">
+          </div>
+          <div class="form-group">
+            <label for="recipient-email">Correo electrónico</label>
+            <input type="email" id="recipient-email" name="recipientEmail" placeholder="Opcional" class="input">
+          </div>
+        </fieldset>
+
+        <!-- Paso 3: Mensaje personalizado -->
+        <fieldset class="p-6 border rounded-lg">
+          <legend class="text-xl font-medium mb-4">3. Mensaje</legend>
+          <div class="form-group">
+            <label for="message-text">Escribe tu mensaje</label>
+            <textarea id="message-text" name="messageText" rows="6" required placeholder="Aquí tu texto especial..." class="textarea"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Paso 4: Detalles de envío -->
+        <fieldset class="p-6 border rounded-lg">
+          <legend class="text-xl font-medium mb-4">4. Envío y Firma</legend>
+          <div class="form-group mb-4">
+            <label for="send-date">Fecha de envío</label>
+            <input type="date" id="send-date" name="sendDate" class="input">
+          </div>
+          <div class="form-group">
+            <label for="signature">Firma visible</label>
+            <input type="text" id="signature" name="signature" placeholder="Ej. Con cariño, Juan" class="input">
+          </div>
+        </fieldset>
+
+        <!-- Botón de envío -->
+        <button type="submit" class="btn btn-primary py-3 text-lg">Continuar al pago</button>
+      </form>
+    </main>
+  </div>
+
+  <!-- Footer dinámico -->
+  <div id="footer"></div>
+
+  <!-- Scripts: Navegación SPA, Lógica del formulario y Fondo Animado -->
+  <script src="js/navigation.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/background.js"></script>
+  
+</body>
+</html>

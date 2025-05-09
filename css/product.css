@@ -1,183 +1,92 @@
 /* css/product.css */
 
-/* —— Hero del producto —— */
+/* Estilos de la página de detalle de producto */
+.product-page {
+  padding: 4rem 0;
+}
+
+/* Hero del producto */
 .product-hero {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    margin: var(--spacing-lg) 0;
-    padding: var(--spacing-lg);
-    color: #fff;
-    text-align: center;
-  
-    /* usa la variable --accent para el gradiente */
-    background: linear-gradient(
-      135deg,
-      var(--accent) 0%,
-      rgba(var(--accent-rgb), 0.8) 100%
-    );
-  }
-  .product-hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    /* patrón semitransparente opcional */
-    background: url('../assets/textures/hero-pattern.png') center/cover no-repeat;
-    opacity: 0.15;
-  }
-  .product-hero__icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto var(--spacing-sm);
-    /* tu SVG debe usar fill="currentColor" */
-    color: #fff;
-  }
-  .product-hero__title {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-sm);
-  }
-  .product-hero__desc {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    max-width: 700px;
-    margin: 0 auto;
-    color: rgba(255,255,255,0.9);
-  }
-  
-  /* —— Planes —— */
-  .plan-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-  }
-  .plan-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .plan-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  }
-  .plan-card__name {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    color: var(--accent);
-    margin-bottom: var(--spacing-xs);
-  }
-  .plan-card__words {
-    color: var(--text-alt);
-    margin-bottom: var(--spacing-xs);
-  }
-  .plan-card__price {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-sm);
-  }
-  .plan-card__btn {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    padding: var(--spacing-xs) var(--spacing-md);
-    cursor: pointer;
-    transition: background .2s ease;
-  }
-  .plan-card__btn:hover {
-    background: var(--accent-dark);
-  }
-  
-  /* —— Responsive —— */
-  @media (max-width: 768px) {
-    .product-hero__title {
-      font-size: 2rem;
-    }
-  }
-  @media (max-width: 600px) {
-    .plan-list {
-      grid-template-columns: 1fr;
-    }
-  }
-  /* Breadcrumb */
-.breadcrumb {
-    font-size: 0.9rem;
-    margin: var(--spacing-sm) 0;
-    color: var(--text-alt);
-  }
-  .breadcrumb a {
-    color: var(--primary);
-  }
-  .breadcrumb span { margin: 0 0.25rem; }
-  
-  /* Botón "Volver" */
-  .btn-back {
-    background: none;
-    border: none;
-    color: var(--primary);
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin-bottom: var(--spacing-lg);
-  }
-  .btn-back:hover {
-    text-decoration: underline;
-  }
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
   .product-hero {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-    background: linear-gradient(135deg, var(--accent-light), #ffffff);
-    color: #333;
-    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
-  
-  .product-hero .waves {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 200%; height: 0.5em;
-    background: url('../assets/svg/waves.svg') repeat-x;
-    animation: waveMove 6s linear infinite;
-    opacity: 0.2;
+}
+
+.product-hero__img img {
+  width: 100%;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-hero__info h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.product-hero__info p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.product-hero__info .btn-primary {
+  padding: 0.75rem 1.5rem;
+}
+
+/* Planes y precios */
+.plans {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .plans {
+    grid-template-columns: repeat(2, 1fr);
   }
-  @keyframes waveMove {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  
-  .product-hero__title {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    color: var(--accent);
-  }
-  /* Contenedor principal */
-#main-content {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* En pantallas anchas, hero y planes lado a lado */
-  @media (min-width: 1024px) {
-    #main-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-lg);
-    }
-    .product-hero { margin: 0; }
-    .plan-list { margin-top: 0; }
-  }
-  
-  /* Asegurar que plan-list quede debajo en móvil */
-  .plan-list {
-    margin-top: var(--spacing-lg);
-  }
-  
+}
+
+.plan-card {
+  border: 1px solid #eee;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+}
+
+.plan-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card p {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.plan-card .price {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.plan-card__btn {
+  text-align: center;
+}
+
+.plan-card__btn.btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+}

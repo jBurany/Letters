@@ -1,0 +1,66 @@
+/* css/form.css */
+
+/* Página de formulario */
+.form-page {
+    padding: 4rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-page h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Estilos de fieldset */
+  form fieldset {
+    border: 1px solid #eee;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  form legend {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+  
+  /* Grupos de formulario */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  /* Inputs y textarea (heredan de global.css) */
+  .input,
+  .textarea,
+  select {
+    background-color: var(--bg-color);
+  }
+  
+  /* Resumen opcional dentro del formulario */
+  #form-summary {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    font-size: 0.95rem;
+  }
+  
+  /* Botón de submit */
+  #order-form button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+  }
+  
